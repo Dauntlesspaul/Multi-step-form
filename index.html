@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Responsive Multi-step form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Bebas+Neue&family=Bree+Serif&family=Kanit:wght@300;500&family=Kdam+Thmor+Pro&family=League+Spartan:wght@100..900&family=Merriweather+Sans&family=Montserrat:wght@400;500&family=Newsreader:opsz@6..72&family=Oswald&family=Outfit:wght@100..900&family=Poppins&family=Raleway:ital,wght@1,800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    body{
+    font-family:  "Ubuntu", sans-serif;
+    padding: 0;
+    background-color: hsl(206, 94%, 87%);
+    margin: 0;
+    color:hsl(0, 0%, 100%);
+    height: max-content;
+    }
+    .footer{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer_background{
+      display: flex;
+      width: 100%;
+      align-items: center;
+      background-color: hsl(231, 100%, 99%);
+      height: 60px;
+      position: fixed;
+      bottom: 0;
+      box-sizing: border-box;
+      padding: 0 10px;
+    }
+    .container{
+      width: 100%;
+    }
+    .side_image{
+      width: 100%;
+      height:170px;
+      background-image: url('./assets/images/bg-sidebar-mobile.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+    } 
+    .modal{
+      background-color: hsl(231, 100%, 99%);
+      width: 93%;
+      border-radius: 10px;
+      height: max-content;
+      box-sizing: border-box;
+      padding: 25px 20px;
+      box-shadow: 0 5px  10px 0 hsl(228, 100%, 84%);
+      display: flex;
+      justify-content:space-between ;
+    }
+    .modal_set{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: -72px;
+      border-radius: 10px;
+    }
+    .items{
+      width: 100%;
+      border-radius: 10px;
+    }
+    label{
+      display:block;
+      margin-top:15px;
+      color:hsl(213, 96%, 18%);
+      font-weight: 500;
+    }
+    h2{
+      margin-top:-12px;
+      color: hsl(213, 96%, 18%);
+    }
+    p{
+      font-size: 16px;
+      font-weight: 500;
+      color:hsl(231, 11%, 63%);
+      margin-top:-13px;
+    }
+    .modal input{
+      width: 100%;
+      height: 42px;
+      margin: 0;
+      padding: 0;
+      border-radius: 5px;
+      font-weight: 600;
+      border:2px solid hsl(229, 24%, 87%);
+      box-sizing: border-box;
+      padding: 0 15px;
+    }
+    ::placeholder{
+      color: hsl(231, 11%, 63%);
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .circle1{
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid white;
+      font-weight: 600;
+    }
+    .circle2{
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid white;
+      font-weight: 600;
+    }
+    .circle3{
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid white;
+      font-weight: 600;
+    }
+    .circle4{
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid white;
+      font-weight: 600;
+    }
+    .step_set{
+      display: flex;
+      width: 160px;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .next{
+      height: 45px;
+      width: 110px;
+      font-size: 15px;
+      background-color:hsl(213, 96%, 18%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      color:  hsl(0, 0%, 100%);
+      font-weight: 500;
+      cursor:pointer;
+      border: none;
+    }
+    span{
+      color:black;
+    }
+    .arcade{
+      width: 100%;
+      height:fit-content ;
+      border: 1px solid hsl(229, 24%, 87%);
+      display: flex;
+      border-radius: 8px;
+      align-items: center;
+      margin-top: 10px;
+      box-sizing: border-box;
+      padding: 15px 0;
+      cursor: pointer;
+    }
+    .addons{
+      width: 100%;
+      height:fit-content ;
+      border: 1px solid hsl(229, 24%, 87%);
+      display: flex;
+      border-radius: 8px;
+      align-items: center;
+      margin-top: 10px;
+      box-sizing: border-box;
+      padding: 15px 15px;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .addons:active{
+      border: 1px outset  hsl(213, 96%, 18%);
+    }
+    .advance{
+      width: 100%;
+      height:fit-content ;
+      border: 1px solid hsl(229, 24%, 87%);
+      display: flex;
+      border-radius: 8px;
+      align-items: center;
+      margin-top: 10px;
+      box-sizing: border-box;
+      padding: 15px 0;
+    }
+    .pro{
+      width: 100%;
+      height:fit-content ;
+      border: 1px solid hsl(229, 24%, 87%);
+      display: flex;
+      border-radius: 8px;
+      align-items: center;
+      margin-top: 10px;
+      box-sizing: border-box;
+      padding: 15px 0;
+    }
+    .advance img{
+    margin-left: 15px;
+    }
+    .pro img{
+    margin-left: 15px;
+    }
+    .arcade img{
+    margin-left: 15px;
+    }
+    .switch_container{
+      width: 100%;
+      height: 40px;
+      background-color:hsl(217, 100%, 97%);
+      margin-top: 30px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .switch_container2{
+      width:200px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+    }
+    .switch{
+      position: relative;
+      display: inline-block;
+      width: 38px;
+      height: 19px;
+    }
+    .switch input{
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 34px;
+    background-color:hsl(213, 96%, 18%);
+    -webkit-transition: .4s;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 4px;
+    }     
+    .slider:before{
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    background-color: hsl(231, 100%, 99%);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+    }
+   .switch input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+    }
+    .yearly{
+      color:hsl(231, 11%, 63%);
+    }
+   #second_content, #third_content, #fourth_content,#fifth_content{
+      display:none;
+    }
+    .active{
+      background-color:hsl(206, 94%, 87%);
+      color:hsl(213, 96%, 18%);
+    }
+    #second_content{
+      height: max-content;
+    }
+   .checked{
+    background-color: hsl(243, 100%, 62%);
+   }
+   .checked_background{
+    background-color: hsl(217, 100%, 97%);
+    border: 1px inset  hsl(243, 100%, 62%);
+   }
+   .new_radio input[type=radio]{
+  display: none;
+   }
+  
+   .new_radio input[type=radio]:checked + .arcade{
+    background-color:  hsl(217, 100%, 97%);
+    border-width: 1px ;
+    border-color: hsl(213, 96%, 18%)  hsl(243, 100%, 62%);
+    border-style:solid;
+}
+  .plan{
+  background-color:hsl(217, 100%, 97%);
+  width: 100%;
+  height:fit-content;
+  border-radius: 8px;
+  align-items: center;
+  margin-top: 10px;
+  box-sizing: border-box;
+  padding: 13px 15px 5px 15px;
+  }
+.total{
+  width: 100%;
+  height:fit-content;
+  align-items: center;
+  margin-top: 25px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  }
+  .tick input{
+    display: none;
+  }
+  hr{
+    border:none;
+    height: 1px;
+    background-color:hsl(229, 24%, 87%);
+    margin-bottom: 14px;
+  }
+ a{
+  color: hsl(231, 11%, 63%);
+ }
+ a:active{
+  color: hsl(243, 100%, 62%);
+ }
+ #first_content input{
+  outline: none;
+  font-size: 17px;
+  font-weight: 400;
+  cursor: pointer;
+ }
+ 
+ #first_content input:focus,#first_content input:active{
+    border-width: 1px ;
+  border-color: hsl(213, 96%, 18%)  hsl(243, 100%, 62%) hsl(243, 100%, 62%) hsl(243, 100%, 62%);
+  border-style:solid;
+  }
+ 
+ .space_out{
+  display: flex;
+  justify-content: space-between;
+ }
+ .validation_check{
+  color:hsl(354, 84%, 57%);
+  font-size:14px;
+  font-weight: 600;
+ }
+ .order_setting{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+ }
+ .check_boximage{
+  border:1px solid hsl(229, 24%, 87%);
+  cursor: pointer;
+  border-radius: 3px;
+ }
+ .addon_text{
+  margin-left: 13px;
+  color:hsl(213, 96%, 18%);
+  font-weight: 500;
+  line-height: 19px;
+  font-size: 13px;
+ }
+ #go-back, .sidenav{
+  display:none;
+ }
+ .fifth_wrapup{
+  text-align: center;
+  line-height: 23px;
+  margin: 50px 0;
+ }
+ #fifth_contentset{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+ }
+ .fifth_wrapup img{
+  width: 55px;
+  margin-bottom: 18px;
+ }
+ #go-back:active{
+ color:hsl(213, 96%, 18%)  !important;
+ }
+ @media screen  and (min-width:1140px){
+  .sidenav{
+      width:310px;
+      height:655px;
+      border-radius: 12px;
+      background-image: url("./assets/images/bg-sidebar-desktop.svg");
+      background-repeat: no-repeat;
+      background-size:cover;
+      grid-area:sidenav;
+      display:block;
+    }
+    .modal_set{
+      width: 60%;
+      margin: 0;
+    }
+    .mobile_sideimage, .mobile_footer{
+      display: none;
+    }
+    .card{
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+    .items{
+      box-sizing: border-box;
+      padding: 0 10%;
+      margin-top: 65px;
+      grid-area: items;
+      height: 520px;
+      display: flex;
+      justify-content: center;
+    }
+   
+    .footer_background{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: hsl(231, 100%, 99%);
+      height: 60px;
+      width: 100%;
+      position: relative;
+      grid-area: footer;
+      padding: 0 10%;
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+    h2{
+      font-weight: 700;
+      font-size: 32px;
+    }
+    .items label{
+      margin-top: 28px;
+    }
+    .items input{
+      height: 52px;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    p{
+      margin: 0;
+      margin-bottom: 35px;
+    }
+    
+    .modal{
+      display:grid;
+      grid-template-areas: "sidenav items"
+                            'sidenav footer';
+      grid-template-columns: 0.1fr 1fr;
+      overflow-x:hidden;
+      box-sizing: border-box;
+      padding: 18px 18px;
+      border-radius: 15px;
+    }
+    .step_set{
+      display:flex;
+      flex-direction:column ;
+      justify-content: space-between;
+      height: 290px;
+      margin:40px 0 0 40px;
+    }
+    .step_container{
+      width:170px;
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .arcade{
+      width: 136px;
+      height: 175px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      box-sizing: border-box;
+      padding-left: 12px;
+      align-items: start;
+      margin: 0;
+      padding-bottom: 2px;
+    }
+    .addons{
+      width:438px;
+      height: 86px; ;
+      border: 1px solid hsl(229, 24%, 87%);
+      display: flex;
+      border-radius: 8px;
+      align-items: center;
+      margin-top: 18px;
+      box-sizing: border-box;
+      padding: 15px 15px;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    
+    .arcade img{
+      width:38px;
+      margin: 0 !important;
+    }
+    .arcade span{
+      line-height: 23px;
+      margin: 0 !important;
+    }
+    .arcade span > span{
+      font-size: 13px!important;
+    }
+    .new_radio{
+      display:flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 435px;
+  }
+  .switch_container{
+      width: 435px;
+      height: 50px;
+    }
+    .footer{
+      width: 435px;
+    }
+    .plan{
+  background-color:hsl(217, 100%, 97%);
+  width: 435px;
+  height:fit-content;
+  border-radius: 8px;
+  align-items: center;
+  margin-top: 10px;
+  box-sizing: border-box;
+  padding: 18px 15px 5px 18px;
+  }
+.total{
+  width: 435px;
+  height:fit-content;
+  align-items: center;
+  margin-top: 25px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  }
+  hr{
+    margin: 22px 0;
+  }  
+  
+
+}
+  </style>
+  <script type="text/javascript">
+    
+    let page=1;
+   
+function myFunction(){
+  const page=1;
+  const list = document.querySelectorAll('#page_1');
+  for(let i=0;i<list.length;i++){
+    list[i].classList.add('active')
+  }
+  document.getElementById('plan').innerText="Arcade (Monthly)"
+ }
+ function calTotal(){
+    let service = 0;
+    let profile = 0;
+    let storage = 0;
+    if(document.getElementById('tickedAddon').checked){
+      const value = document.getElementById('t-serviceprice').innerText;
+      service = Number(value.match(/\d+/).join(''))
+    }
+    if(document.getElementById('tickedAddon2').checked){
+      const value = document.getElementById('t-storageprice').innerText;
+      storage = Number(value.match(/\d+/).join(''))
+    }
+    if(document.getElementById('tickedAddon3').checked){
+      const value = document.getElementById('t-profileprice').innerText;
+      profile= Number(value.match(/\d+/).join(''))
+    }
+    
+    let plan = document.getElementById('plan_price').innerText;
+    let planPrice = Number(plan.match(/\d+/g).join(''));
+    if(document.getElementById('plan-selected').checked){
+      document.getElementById('month-year').innerText='per year'
+      const total = planPrice + service + profile + storage ;
+      document.getElementById('sum').innerText= '+$' +total + '/yr';
+    }
+    else{
+    document.getElementById('month-year').innerText='per month'
+    const total = planPrice + service + profile + storage ;
+    document.getElementById('sum').innerText= '+$' +total + '/mo';
+    }
+  }
+
+    function next(){
+     const namevalidation = document.getElementById('name').value;
+     const emailvalidation = document.getElementById('email').value;
+     const phonevalidation = document.getElementById('number').value;
+
+     if(namevalidation==''){
+      document.getElementById('name-valid').innerText="This field is required";
+      document.getElementById('name').style.borderColor='hsl(354, 84%, 57%)'
+     }
+     else{
+      document.getElementById('name-valid').innerText=""
+     }
+     if(emailvalidation==''){
+      document.getElementById('email-valid').innerText="This field is required"
+      document.getElementById('email').style.borderColor='hsl(354, 84%, 57%)'
+     }
+     else{
+      document.getElementById('email-valid').innerText=""
+     }
+     if(phonevalidation==''){
+      document.getElementById('phone-valid').innerText="This field is required"
+      document.getElementById('number').style.borderColor='hsl(354, 84%, 57%)'
+     }
+     else{
+      document.getElementById('phone-valid').innerText=""
+     }
+
+     if(page<5){
+     if(namevalidation!=='' && emailvalidation!=='' && phonevalidation!==''){
+      page+=1;
+      
+      const list = document.querySelectorAll('#page_1');
+      const list2 = document.querySelectorAll('#page_2');
+      const list3 = document.querySelectorAll('#page_3');
+      const list4 = document.querySelectorAll('#page_4');
+      const back = document.querySelectorAll('#go-back');
+      const footer = document.querySelectorAll('#footer');
+      switch(page){ 
+        case 2:
+        document.getElementById('second_content').style.display='block';
+        document.getElementById('first_content').style.display='none';
+        for(let i=0;i<list.length;i++){
+          list[i].classList.remove('active')
+          list2[i].classList.add('active')
+          back[i].style.display="block";
+        }
+       break;
+       case 3:
+        document.getElementById('second_content').style.display='none';
+        document.getElementById('third_content').style.display='block';
+        for(let i=0;i<list.length;i++){
+          list2[i].classList.remove('active')
+          list3[i].classList.add('active')
+        } 
+          
+       break;
+       case 4:
+        document.getElementById('third_content').style.display='none';
+        document.getElementById('fourth_content').style.display='block';
+        for(let i=0;i<list.length;i++){
+          list3[i].classList.remove('active')
+          list4[i].classList.add('active')
+        } 
+        document.getElementById('next-page').style.backgroundColor="hsl(243, 100%, 62%)"
+        document.getElementById('next-page').innerText="Confirm"
+       break;
+        default:
+        document.getElementById('fourth_content').style.display='none';
+        document.getElementById('fifth_content').style.display='block';
+        for(let i=0;i<list.length;i++){
+          footer[i].style.display='none'
+        } 
+        const active = document.getElementById('next-page');
+         active.addEventListener('click',e=>{
+          e.preventDefault();
+          active.style.backgroundColor="hsl(228, 100%, 84%)";
+         })
+      
+      }
+    
+  calTotal()
+
+     }
+    }
+    }
+
+
+    function back(){
+    if(page>1){
+      const list = document.querySelectorAll('#page_1');
+      const list2 = document.querySelectorAll('#page_2');
+      const list3 = document.querySelectorAll('#page_3');
+      const list4 = document.querySelectorAll('#page_4');
+      const back = document.querySelectorAll('#go-back');
+      page-=1
+      switch(page){ 
+        case 1:
+        document.getElementById('first_content').style.display='block';
+        document.getElementById('second_content').style.display='none';
+        for(let i=0;i<back.length;i++){
+          back[i].style.display="none";
+          list2[i].classList.remove('active')
+          list[i].classList.add('active')
+        } 
+          break;
+        case 2:
+        document.getElementById('second_content').style.display='block';
+        document.getElementById('third_content').style.display='none';
+        for(let i=0;i<list.length;i++){
+          list3[i].classList.remove('active')
+          list2[i].classList.add('active')
+        } 
+       break;
+       case 3:
+        document.getElementById('fourth_content').style.display='none';
+        document.getElementById('third_content').style.display='block';
+        for(let i=0;i<list.length;i++){
+          list4[i].classList.remove('active')
+          list3[i].classList.add('active')
+        } 
+        document.getElementById('next-page').style.backgroundColor="hsl(213, 96%, 18%)"
+        document.getElementById('next-page').innerText="Next Step"
+       break;
+      }
+    }
+    }
+
+  function tickedAddon(){
+  if(document.getElementById('tickedAddon').checked){ 
+  if(document.getElementById('plan-selected').checked){
+  
+   document.getElementById('checkbox-image').classList.add("checked");
+   document.getElementById('addons-background').classList.add('checked_background')
+   document.getElementById('t-service').innerHTML="Online service<br><br>"
+   document.getElementById('t-serviceprice').innerHTML="+$10/yr"
+
+  }
+  else{
+   document.getElementById('checkbox-image').classList.add("checked");
+   document.getElementById('addons-background').classList.add('checked_background')
+   document.getElementById('t-service').innerHTML="Online service<br><br>"
+   document.getElementById('t-serviceprice').innerHTML="+$1/mo"
+  }
+}
+  else{
+    document.getElementById('checkbox-image').classList.remove("checked");
+   document.getElementById('addons-background').classList.remove('checked_background')
+   document.getElementById('t-service').innerHTML=""
+   document.getElementById('t-serviceprice').innerHTML=""
+  }
+ }
+
+ function tickedAddon2(){
+  if(document.getElementById('tickedAddon2').checked){  
+  if(document.getElementById('plan-selected').checked){
+   document.getElementById('checkbox-image2').classList.add("checked");
+   document.getElementById('addons-background2').classList.add('checked_background')
+   document.getElementById('t-storage').innerHTML="Larger storage<br><br>"
+   document.getElementById('t-storageprice').innerHTML="+$20/yr"
+  }
+  else{
+    document.getElementById('checkbox-image2').classList.add("checked");
+   document.getElementById('addons-background2').classList.add('checked_background')
+   document.getElementById('t-storage').innerHTML="Larger storage<br><br>"
+   document.getElementById('t-storageprice').innerHTML="+$2/mo"
+  }
+  }
+  else{
+    document.getElementById('checkbox-image2').classList.remove("checked");
+   document.getElementById('addons-background2').classList.remove('checked_background')
+   document.getElementById('t-storage').innerHTML=""
+   document.getElementById('t-storageprice').innerHTML=""
+  }
+ }
+
+ function tickedAddon3(){
+  if(document.getElementById('tickedAddon3').checked){  
+    if(document.getElementById('plan-selected').checked){
+   document.getElementById('checkbox-image3').classList.add("checked");
+   document.getElementById('addons-background3').classList.add('checked_background')
+   document.getElementById('t-profile').innerHTML="Customizable profile<br><br>"
+   document.getElementById('t-profileprice').innerHTML="+$20/yr"
+    }
+    else{
+    document.getElementById('checkbox-image3').classList.add("checked");
+   document.getElementById('addons-background3').classList.add('checked_background')
+   document.getElementById('t-profile').innerHTML="Customizable profile<br><br>"
+   document.getElementById('t-profileprice').innerHTML="+$2/mo"
+    }
+  }
+  else{
+    document.getElementById('checkbox-image3').classList.remove("checked");
+   document.getElementById('addons-background3').classList.remove('checked_background')
+   document.getElementById('t-profile').innerHTML=""
+   document.getElementById('t-profileprice').innerHTML=""
+  }
+ }
+
+
+
+
+
+function selected(value){
+        const plan = value.id;
+        if(document.getElementById('plan-selected').checked){
+      switch(plan){
+        case 'arcadePlan':
+        document.getElementById('plan').innerText="Arcade (Yearly)"
+        document.getElementById('plan_price').innerText="$90/yr" 
+        break;
+        case 'advancedPlan':
+        document.getElementById('plan').innerText="Advanced (Yearly)"
+        document.getElementById('plan_price').innerText="$120/yr" 
+        break;
+        case 'proPlan':
+        document.getElementById('plan').innerText="Pro (Yearly)"
+        document.getElementById('plan_price').innerText="$150/yr" 
+      }
+    }
+    else{
+      switch(plan){
+        case 'arcadePlan':
+        document.getElementById('plan').innerText="Arcade (Monthly)"
+        document.getElementById('plan_price').innerText="$9/mo" 
+        break;
+        case 'advancedPlan':
+        document.getElementById('plan').innerText="Advanced (Monthly)"
+        document.getElementById('plan_price').innerText="$12/mo" 
+        break;
+        case 'proPlan':
+        document.getElementById('plan').innerText="Pro (Monthly)"
+        document.getElementById('plan_price').innerText="$15/mo" 
+      }
+    }
+}
+
+
+function plan(){
+  if(document.getElementById('plan-selected').checked){
+  document.getElementById('yearly').style.color="hsl(213, 96%, 18%)"
+  document.getElementById('monthly').style.color="hsl(231, 11%, 63%)"
+  document.getElementById('arcade').innerText="$90/yr"
+  document.getElementById('advanced').innerText="$120/yr"
+  document.getElementById('pro').innerText="$150/yr"
+  document.getElementById('free').innerText="2 months free"
+  document.getElementById('free1').innerText="2 months free"
+  document.getElementById('free2').innerText="2 months free"
+  document.getElementById('addons_service').innerText="+$10/yr"
+  document.getElementById('addons_storage').innerText="+$20/yr"
+  document.getElementById('addons_profile').innerText="+$20/yr"
+  const plan =document.getElementById('plan').innerText;
+  switch(plan){
+  case "Pro (Monthly)":
+  document.getElementById('plan').innerText='Pro (Yearly)'
+  document.getElementById('plan_price').innerText='$150/yr'
+  break;
+  case "Advanced (Monthly)":
+  document.getElementById('plan').innerText='Advanced (Yearly)'
+  document.getElementById('plan_price').innerText='$120/yr'
+  break;
+  default:
+  document.getElementById('plan').innerText='Arcade (Yearly)'
+  document.getElementById('plan_price').innerText='$90/yr'
+  }
+
+  const ifService = document.getElementById('t-service').innerHTML;
+  const ifStorage = document.getElementById('t-storage').innerHTML;
+  const ifProfile= document.getElementById('t-profile').innerHTML;
+
+  if(ifService=="Online service<br><br>"){
+    document.getElementById('t-serviceprice').innerHTML="+$10/yr";
+  }
+  if(ifStorage=="Larger storage<br><br>"){
+    document.getElementById('t-storageprice').innerHTML="+$20/yr";
+  }
+  if(ifProfile=="Customizable profile<br><br>"){
+    document.getElementById('t-profileprice').innerHTML="+$20/yr";
+  }
+
+  }
+  else{
+    document.getElementById('yearly').style.color="hsl(231, 11%, 63%)"
+  document.getElementById('monthly').style.color="hsl(213, 96%, 18%)"
+  document.getElementById('arcade').innerText="$9/mo"
+  document.getElementById('advanced').innerText="$12/mo"
+  document.getElementById('pro').innerText="$15/mo"
+  document.getElementById('free').innerText=""
+  document.getElementById('free1').innerText=""
+  document.getElementById('free2').innerText=""
+  document.getElementById('addons_service').innerText="+$1/mo"
+  document.getElementById('addons_storage').innerText="+$2/mo"
+  document.getElementById('addons_profile').innerText="+$2/mo"
+
+  const plan =document.getElementById('plan').innerText;
+  switch(plan){
+  case "Pro (Yearly)":
+  document.getElementById('plan').innerText='Pro (Monthly)'
+  document.getElementById('plan_price').innerText='$15/mo'
+  break;
+  case "Advanced (Yearly)":
+  document.getElementById('plan').innerText='Advanced (Monthly)'
+  document.getElementById('plan_price').innerText='$12/mo'
+  break;
+  default:
+  document.getElementById('plan').innerText='Arcade (Monthly)'
+  document.getElementById('plan_price').innerText='$9/mo'
+  }
+  const ifService = document.getElementById('t-service').innerHTML;
+  const ifStorage = document.getElementById('t-storage').innerHTML;
+  const ifProfile= document.getElementById('t-profile').innerHTML;
+
+  if(ifService=="Online service<br><br>"){
+    document.getElementById('t-serviceprice').innerHTML="+$1/mo";
+  }
+  if(ifStorage=="Larger storage<br><br>"){
+    document.getElementById('t-storageprice').innerHTML="+$2/mo";
+  }
+  if(ifProfile=="Customizable profile<br><br>"){
+    document.getElementById('t-profileprice').innerHTML="+$2/mo";
+  }
+
+  }
+
+}
+
+function swapPlan(){
+  if(document.getElementById('plan-selected').checked){
+    document.getElementById('plan-selected').checked=false;
+  }
+  else{
+    document.getElementById('plan-selected').checked=true;
+  }
+  plan();
+  calTotal();
+}
+function nameValidate(value,identity){
+  if(value!==""){
+    document.getElementById("name-valid").innerText='';
+    document.getElementById(identity).style.borderColor='hsl(229, 24%, 87%)'
+  }    
+}
+function mailValidate(value,identity){
+  if(value!==""){
+    document.getElementById("email-valid").innerText='';
+    document.getElementById(identity).style.borderColor='hsl(229, 24%, 87%)'
+  }    
+}
+function phoneValidate(value,identity){
+  if(value!==""){
+    document.getElementById("phone-valid").innerText='';
+    document.getElementById(identity).style.borderColor='hsl(229, 24%, 87%)'
+  }    
+}
+  </script>
+</head>
+<body onload="myFunction()">
+  <main>
+  <div class="container">
+     <div class="card">
+      <div class="mobile_sideimage">
+      <div class="side_image">
+          <div class="step_set">
+            <div class="circle1" id="page_1">1</div>
+            <div class="circle2" id="page_2">2</div>
+            <div class="circle3" id="page_3">3</div>
+            <div class="circle4" id="page_4">4</div>
+              </div>
+          </div>    
+    </div>
+      <div class="modal_set">
+      <div class="modal">
+        <div class="sidenav">
+            <div class="step_set">
+             <div class="step_container"> 
+              <div class="circle1" id="page_1">1</div>
+               <div style="width: 110px;line-height: 22px;font-weight: 200;color: hsl(231, 11%, 63%);font-size: 14px;">STEP 1<br><span style="color:hsl(0, 0%, 100%);font-weight: 500;">YOUR INFO</span></div>
+            </div>
+            <div class="step_container"> 
+              <div class="circle2" id="page_2">2</div>
+               <div  style="width: 110px;line-height: 22px;font-weight: 200;color:hsl(231, 11%, 63%);font-size: 14px">STEP 2<br><span style="color:hsl(0, 0%, 100%);font-weight: 500;">SELECT PLAN</span></div>
+            </div>
+            <div class="step_container"> 
+              <div class="circle3" id="page_3">3</div>
+               <div style="width: 110px;line-height: 22px;font-weight: 200;color:hsl(231, 11%, 63%);font-size: 14px">STEP 3<br><span style="color:hsl(0, 0%, 100%);font-weight: 500;">ADD-ONS</span></div>
+            </div>
+            <div class="step_container"> 
+              <div class="circle4" id="page_4">4</div>
+               <div  style="width: 110px;line-height: 22px;font-weight: 200;color:hsl(231, 11%, 63%);font-size: 14px">STEP 4<br><span style="color:hsl(0, 0%, 100%);font-weight: 500;">SUMMARY</span></div>
+            </div>
+              
+            </div>    
+        </div>
+        <div class="items">
+        <div id="first_content">
+        <h2>Personal info</h2>
+        <p> Please provide your name, email address, and phone number.</p>
+        <label class="space_out" for="name">Name <span class="validation_check" id="name-valid"></span></label>
+        <input type="text" id="name" onchange="nameValidate(this.value,this.id)" placeholder=" e.g. Stephen King" value="">
+        <label class="space_out" for="email">Email Address<span class="validation_check"  id="email-valid"></span></label>
+        <input type="email" id="email" onchange="mailValidate(this.value,this.id)" placeholder=" e.g. stephenking@lorem.com" value="">
+        <label class="space_out" for="number">Phone Number<span class="validation_check"  id="phone-valid"></span></label>
+        <input type="tel" id='number' onchange="phoneValidate(this.value,this.id)" placeholder=" e.g. +1 234 567 890" value="">
+        </div>
+        <div id="second_content">
+          <h2>Select your plan</h2>
+          <p>  You have the option of monthly or yearly billing.</p>
+          <div class="new_radio">
+            <input type="radio" id="r1" name="grp"  checked="checked"/>
+          <label id="arcadePlan" onclick="selected(this)" for="r1" class="arcade">
+            <img src="./assets/images/icon-arcade.svg" alt="arcade"> 
+            <span style="margin-left: 13px;color:hsl(213, 96%, 18%);font-weight: 500;line-height: 17px;"><b>Arcade</b> <br>
+              <span id="arcade" style="color:hsl(231, 11%, 63%);font-weight: 500;font-size: 14px;">$9/mo</span><br>
+              <span style="color:hsl(213, 96%, 18%);font-size: 13px;width:400px"  id="free"></span>
+            </span>
+          </label>
+          <input type="radio" id="r2" name="grp"/>
+          <label  id="advancedPlan" onclick="selected(this)" for="r2" class="arcade">
+            <img src="./assets/images/icon-advanced.svg" alt="arcade"> <span style="margin-left: 13px;color:hsl(213, 96%, 18%);font-weight: 500;line-height: 17px;"><b>Advanced</b><br>
+              <span id="advanced" style="color:hsl(231, 11%, 63%);font-weight: 500;font-size: 14px;">$12/mo</span><br><span style="color:hsl(213, 96%, 18%);font-size: 13px;" id="free1"></span></span>
+            </label>
+            <input id="r3" type="radio" name="grp"/>
+          <label  id="proPlan" onclick="selected(this)" for="r3" class="arcade">
+            <img src="./assets/images/icon-pro.svg" alt="arcade"> <span style="margin-left: 13px;color:hsl(213, 96%, 18%);font-weight: 500;line-height: 17px;"><b>Pro</b><br>
+              <span id="pro" style="color:hsl(231, 11%, 63%);font-weight: 500;font-size: 14px;">$15/mo</span><br><span style="color:hsl(213, 96%, 18%);font-size: 13px;;" id="free2"></span></span>
+            </label>
+          </div>
+          <div class="switch_container">
+            <div class="switch_container2">
+              <span class="monthly" id="monthly" style="font-size: 14px"><b>Monthly</b></span><label style="margin:0;" class="switch">
+                <input onchange="plan()" id="plan-selected" type="checkbox"> <span class="slider"></span></label>
+                <span  id="yearly" class="yearly" style="font-size: 14px;"><b>Yearly</b></span>
+            </div>
+          </div>
+          </div>
+   
+          <div id="third_content">
+            <h2> Pick add-ons</h2>
+            <p>  Add-ons help enhance your gaming experience.</p>
+            <div id="addons-background" class="addons">
+              <div style="display: flex; width: 196px;justify-content: space-between;align-items: center;">
+                <label class="tick" style="margin: 0;">
+                <input id="tickedAddon" onchange="tickedAddon()" type="checkbox">
+                <img id="checkbox-image"  class="check_boximage" src="./assets/images/icon-checkmark.svg" alt="icon-checkmark">
+               </label>
+               <div class="addon_text"><b>Online service</b> <br>
+                  <span style="color:hsl(231, 11%, 63%);font-weight: 500;font-size: 12px;">Access to multiplayer games</span>
+                </div>
+                </div>
+                <div ><span style="color:hsl(243, 100%, 62%);font-size: 12px;font-weight: 500;"  id="addons_service">+$1/mo</span></div>
+              </div>
+            <div id="addons-background2" class="addons">
+              <div style="display: flex; width: 168px;justify-content: space-between;align-items: center;">
+                <label class="tick" style="margin: 0;">
+                <input id="tickedAddon2" onchange="tickedAddon2()" type="checkbox">
+                <img id="checkbox-image2"  class="check_boximage" src="./assets/images/icon-checkmark.svg" alt="icon-checkmark">
+              </label>
+              <div class="addon_text"><b>Larger storage</b> <br>
+                  <span style="color:hsl(231, 11%, 63%);font-weight: 500;font-size: 12px;">Extra 1TB of cloud save</span></div></div>
+                <div ><span style="color:hsl(243, 100%, 62%);font-size: 12px;font-weight: 500;"  id="addons_storage">+$2/mo</span></div>
+             </div>
+            <div id="addons-background3" class="addons">
+              <div style="display: flex; width: 205px;justify-content: space-between;align-items: center;">
+                <label class="tick" style="margin: 0;">
+                <input id="tickedAddon3" onchange="tickedAddon3()" type="checkbox">
+                <img id="checkbox-image3"  class="check_boximage" src="./assets/images/icon-checkmark.svg" alt="icon-checkmark">
+              </label>
+              <div class="addon_text"><b>Customizable profile</b> <br>
+                  <span style="color:hsl(231, 11%, 63%);font-weight: 500;font-size: 12px;">Custom theme on your profile</span></div></div>
+                <div ><span style="color:hsl(243, 100%, 62%);font-size: 12px;font-weight: 500;"  id="addons_profile">+$2/mo</span></div>
+            </div>
+            </div>
+      
+            <div id="fourth_content">
+              <h2>Finishing up </h2>
+              <p>  Double-check everything looks OK before confirming.</p>
+              <div class="plan">
+                <div style="display: flex; width:100%;justify-content: space-between;align-items: center;margin: 8px 0;">
+                  <div  style="color:hsl(213, 96%, 18%);font-weight: 600;line-height: 19px;font-size: 15px;"><b id="plan"></b> <br>
+                    <span style="color:hsl(231, 11%, 63%);font-weight: 500;font-size: 15px;"><a onclick="swapPlan()" href="#">Change</a></span>
+                  </div>
+                    <div ><span style="color:hsl(213, 96%, 18%);font-size: 14px;font-weight: 600;"   id="plan_price">$9/mo</span></div>
+                  </div>
+                  <hr/>
+                  <div class="order_setting"><span style="color: hsl(231, 11%, 63%);font-size: 14.5px;" id="t-service"></span>
+                    <span style="color:hsl(213, 96%, 18%);font-size: 14px;font-weight: 500;" id="t-serviceprice"></span>
+                  </div>
+                  <div class="order_setting"><span style="color: hsl(231, 11%, 63%);font-size: 14.5px;" id="t-storage"></span>
+                    <span style="color:hsl(213, 96%, 18%);font-size: 14px;font-weight: 500;" id="t-storageprice"></span>
+                  </div>
+                  <div class="order_setting"><span style="color: hsl(231, 11%, 63%);font-size: 14.5px;" id="t-profile"></span>
+                    <span style="color:hsl(213, 96%, 18%);font-size: 14px;font-weight: 500;" id="t-profileprice"></span>
+                  </div>
+                </div>
+
+                <div class="total"><div style="display: flex;justify-content: space-between;font-weight: 500;margin: 15px 0;">
+                  <span style="color: hsl(231, 11%, 63%);font-size: 14.5px;">Total (<span style="color: hsl(231, 11%, 63%);font-size: 14.5px;" id="month-year"></span>)</span>
+                  <span style="color:hsl(243, 100%, 62%);font-size: 14px;font-weight: 600;" id='sum'></span>
+                </div>
+              </div>
+              </div>
+
+              <div id="fifth_content">
+                <div id="fifth_contentset">
+                <div class="fifth_wrapup">
+                <img src="./assets/images/icon-thank-you.svg" alt="thank-you">
+                <h2>Thank you!</h2>
+                <p> Thanks for confirming your subscription! We hope you have fun 
+                  using our platform. If you ever need support, please feel free 
+                  to email us at support@loremgaming.com. </p>
+                </div>
+              </div>
+              </div>
+             </div> 
+             
+             
+             <div class="footer_background" id="footer">
+              <div class="footer"> 
+                <div><span style="cursor: pointer;font-weight: 600;color:hsl(231, 11%, 63%) ;" id="go-back" onclick="back()">Go back</span></div>
+                <button onclick="next()" id='next-page' class="next">Next Step</button>
+               </div>
+               </div>
+
+
+
+          </div>
+         </div>
+        <div class="mobile_footer">
+      <div class="footer_background" id="footer">
+      <div class="footer"> 
+        <div><span style="cursor: pointer;font-weight: 600;color:hsl(231, 11%, 63%) ;" id="go-back" onclick="back()">Go back</span></div>
+        <button onclick="next()" id='next-page' class="next">Next Step</button>
+       </div>
+       </div>
+       </div>
+     </div> 
+  </div>
+</main>
+</body>
+</html>
