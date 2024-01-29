@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   
@@ -14,7 +14,7 @@
     body{
     font-family:  "Ubuntu", sans-serif;
     padding: 0;
-    background-color: hsl(206, 94%, 87%);
+    background-color: hsl(217, 100%, 97%);
     margin: 0;
     color:hsl(0, 0%, 100%);
     height: max-content;
@@ -403,13 +403,13 @@
   width: 55px;
   margin-bottom: 18px;
  }
- #go-back:active{
+ #goback:active{
  color:hsl(213, 96%, 18%)  !important;
  }
  @media screen  and (min-width:1140px){
   .sidenav{
-      width:310px;
-      height:655px;
+      width:300px;
+      height:590px;
       border-radius: 12px;
       background-image: url("./assets/images/bg-sidebar-desktop.svg");
       background-repeat: no-repeat;
@@ -418,7 +418,7 @@
       display:block;
     }
     .modal_set{
-      width: 60%;
+      width: 1100px;
       margin: 0;
     }
     .mobile_sideimage, .mobile_footer{
@@ -433,10 +433,9 @@
     }
     .items{
       box-sizing: border-box;
-      padding: 0 10%;
-      margin-top: 65px;
+      margin-top: 40px;
       grid-area: items;
-      height: 520px;
+      height: 455px;
       display: flex;
       justify-content: center;
     }
@@ -459,12 +458,13 @@
       font-size: 32px;
     }
     .items label{
-      margin-top: 28px;
+      margin-top: 20px;
     }
     .items input{
-      height: 52px;
+      height: 50px;
       border-radius: 12px;
       margin-top: 10px;
+      width: 500px;
     }
 
     p{
@@ -487,7 +487,7 @@
       flex-direction:column ;
       justify-content: space-between;
       height: 290px;
-      margin:40px 0 0 40px;
+      margin:30px 0 0 40px;
     }
     .step_container{
       width:170px;
@@ -497,8 +497,8 @@
       align-items: center;
     }
     .arcade{
-      width: 136px;
-      height: 175px;
+      width: 154px;
+      height: 185px;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -509,7 +509,7 @@
       padding-bottom: 2px;
     }
     .addons{
-      width:438px;
+      width:500px;
       height: 86px; ;
       border: 1px solid hsl(229, 24%, 87%);
       display: flex;
@@ -537,18 +537,18 @@
       display:flex;
       flex-direction: row;
       justify-content: space-between;
-      width: 435px;
+      width: 500px;
   }
   .switch_container{
-      width: 435px;
+      width: 500px;
       height: 50px;
     }
     .footer{
-      width: 435px;
+      width: 500px;
     }
     .plan{
   background-color:hsl(217, 100%, 97%);
-  width: 435px;
+  width: 500px;
   height:fit-content;
   border-radius: 8px;
   align-items: center;
@@ -557,7 +557,7 @@
   padding: 18px 15px 5px 18px;
   }
 .total{
-  width: 435px;
+  width: 500px;
   height:fit-content;
   align-items: center;
   margin-top: 25px;
@@ -566,8 +566,7 @@
   }
   hr{
     margin: 22px 0;
-  }  
-  
+  } 
 
 }
   </style>
@@ -577,7 +576,7 @@
    
 function myFunction(){
   const page=1;
-  const list = document.querySelectorAll('#page_1');
+  const list = document.querySelectorAll('#page1');
   for(let i=0;i<list.length;i++){
     list[i].classList.add('active')
   }
@@ -645,12 +644,12 @@ function myFunction(){
      if(namevalidation!=='' && emailvalidation!=='' && phonevalidation!==''){
       page+=1;
       
-      const list = document.querySelectorAll('#page_1');
-      const list2 = document.querySelectorAll('#page_2');
-      const list3 = document.querySelectorAll('#page_3');
-      const list4 = document.querySelectorAll('#page_4');
-      const back = document.querySelectorAll('#go-back');
-      const footer = document.querySelectorAll('#footer');
+      const list = document.querySelectorAll('#page1');
+      const list2 = document.querySelectorAll('#page2');
+      const list3 = document.querySelectorAll('#page3');
+      const list4 = document.querySelectorAll('#page4');
+      const back = document.querySelectorAll('#goback');
+      const footer = document.querySelectorAll('#myfooter');
       switch(page){ 
         case 2:
         document.getElementById('second_content').style.display='block';
@@ -677,8 +676,8 @@ function myFunction(){
           list3[i].classList.remove('active')
           list4[i].classList.add('active')
         } 
-        document.getElementById('next-page').style.backgroundColor="hsl(243, 100%, 62%)"
-        document.getElementById('next-page').innerText="Confirm"
+        document.getElementById('nextpage').style.backgroundColor="hsl(243, 100%, 62%)"
+        document.getElementById('nextpage').innerText="Confirm"
        break;
         default:
         document.getElementById('fourth_content').style.display='none';
@@ -686,7 +685,7 @@ function myFunction(){
         for(let i=0;i<list.length;i++){
           footer[i].style.display='none'
         } 
-        const active = document.getElementById('next-page');
+        const active = document.getElementById('nextpage');
          active.addEventListener('click',e=>{
           e.preventDefault();
           active.style.backgroundColor="hsl(228, 100%, 84%)";
@@ -703,11 +702,11 @@ function myFunction(){
 
     function back(){
     if(page>1){
-      const list = document.querySelectorAll('#page_1');
-      const list2 = document.querySelectorAll('#page_2');
-      const list3 = document.querySelectorAll('#page_3');
-      const list4 = document.querySelectorAll('#page_4');
-      const back = document.querySelectorAll('#go-back');
+      const list = document.querySelectorAll('#page1');
+      const list2 = document.querySelectorAll('#page2');
+      const list3 = document.querySelectorAll('#page3');
+      const list4 = document.querySelectorAll('#page4');
+      const back = document.querySelectorAll('#goback');
       page-=1
       switch(page){ 
         case 1:
@@ -734,8 +733,8 @@ function myFunction(){
           list4[i].classList.remove('active')
           list3[i].classList.add('active')
         } 
-        document.getElementById('next-page').style.backgroundColor="hsl(213, 96%, 18%)"
-        document.getElementById('next-page').innerText="Next Step"
+        document.getElementById('nextpage').style.backgroundColor="hsl(213, 96%, 18%)"
+        document.getElementById('nextpage').innerText="Next Step"
        break;
       }
     }
@@ -976,10 +975,10 @@ function phoneValidate(value,identity){
       <div class="mobile_sideimage">
       <div class="side_image">
           <div class="step_set">
-            <div class="circle1" id="page_1">1</div>
-            <div class="circle2" id="page_2">2</div>
-            <div class="circle3" id="page_3">3</div>
-            <div class="circle4" id="page_4">4</div>
+            <div class="circle1" id="page1">1</div>
+            <div class="circle2" id="page2">2</div>
+            <div class="circle3" id="page3">3</div>
+            <div class="circle4" id="page4">4</div>
               </div>
           </div>    
     </div>
@@ -988,19 +987,19 @@ function phoneValidate(value,identity){
         <div class="sidenav">
             <div class="step_set">
              <div class="step_container"> 
-              <div class="circle1" id="page_1">1</div>
+              <div class="circle1" id="page1">1</div>
                <div style="width: 110px;line-height: 22px;font-weight: 200;color: hsl(231, 11%, 63%);font-size: 14px;">STEP 1<br><span style="color:hsl(0, 0%, 100%);font-weight: 500;">YOUR INFO</span></div>
             </div>
             <div class="step_container"> 
-              <div class="circle2" id="page_2">2</div>
+              <div class="circle2" id="page2">2</div>
                <div  style="width: 110px;line-height: 22px;font-weight: 200;color:hsl(231, 11%, 63%);font-size: 14px">STEP 2<br><span style="color:hsl(0, 0%, 100%);font-weight: 500;">SELECT PLAN</span></div>
             </div>
             <div class="step_container"> 
-              <div class="circle3" id="page_3">3</div>
+              <div class="circle3" id="page3">3</div>
                <div style="width: 110px;line-height: 22px;font-weight: 200;color:hsl(231, 11%, 63%);font-size: 14px">STEP 3<br><span style="color:hsl(0, 0%, 100%);font-weight: 500;">ADD-ONS</span></div>
             </div>
             <div class="step_container"> 
-              <div class="circle4" id="page_4">4</div>
+              <div class="circle4" id="page4">4</div>
                <div  style="width: 110px;line-height: 22px;font-weight: 200;color:hsl(231, 11%, 63%);font-size: 14px">STEP 4<br><span style="color:hsl(0, 0%, 100%);font-weight: 500;">SUMMARY</span></div>
             </div>
               
@@ -1129,10 +1128,10 @@ function phoneValidate(value,identity){
              </div> 
              
              
-             <div class="footer_background" id="footer">
+             <div class="footer_background" id="myfooter">
               <div class="footer"> 
-                <div><span style="cursor: pointer;font-weight: 600;color:hsl(231, 11%, 63%) ;" id="go-back" onclick="back()">Go back</span></div>
-                <button onclick="next()" id='next-page' class="next">Next Step</button>
+                <div><span style="cursor: pointer;font-weight: 600;color:hsl(231, 11%, 63%) ;" id="goback" onclick="back()">Go back</span></div>
+                <button onclick="next()" id='nextpage' class="next">Next Step</button>
                </div>
                </div>
 
@@ -1141,10 +1140,10 @@ function phoneValidate(value,identity){
           </div>
          </div>
         <div class="mobile_footer">
-      <div class="footer_background" id="footer">
+      <div class="footer_background" id="myfooter">
       <div class="footer"> 
-        <div><span style="cursor: pointer;font-weight: 600;color:hsl(231, 11%, 63%) ;" id="go-back" onclick="back()">Go back</span></div>
-        <button onclick="next()" id='next-page' class="next">Next Step</button>
+        <div><span style="cursor: pointer;font-weight: 600;color:hsl(231, 11%, 63%) ;" id="goback" onclick="back()">Go back</span></div>
+        <button onclick="next()" id='nextpage' class="next">Next Step</button>
        </div>
        </div>
        </div>
